@@ -1,4 +1,3 @@
-/* ─── Reset & base ─────────────────────────────────── */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -26,7 +25,6 @@ html, body {
     overflow-x: hidden;
 }
 
-/* ─── Animated background blobs ────────────────────── */
 .bg-blob {
     position: fixed;
     border-radius: 50%;
@@ -76,7 +74,6 @@ html, body {
     to   { transform: translate(-80px, 40px) scale(1.15); }
 }
 
-/* ─── App wrapper ───────────────────────────────────── */
 .app-wrapper {
     min-height: 100vh;
     display: flex;
@@ -88,7 +85,6 @@ html, body {
     z-index: 1;
 }
 
-/* ─── Header / Logo ─────────────────────────────────── */
 .app-header {
     margin-bottom: 28px;
 }
@@ -114,7 +110,6 @@ html, body {
     background-clip: text;
 }
 
-/* ─── Main card ─────────────────────────────────────── */
 .card {
     width: 100%;
     max-width: 480px;
@@ -127,7 +122,6 @@ html, body {
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.12);
 }
 
-/* ─── Search bar ─────────────────────────────────────── */
 .search-section {
     margin-bottom: 4px;
 }
@@ -200,7 +194,6 @@ html, body {
     transform: scale(0.96);
 }
 
-/* ─── State boxes (loading / error) ─────────────────── */
 .state-box {
     display: none;
     align-items: center;
@@ -243,7 +236,6 @@ html, body {
     to { transform: rotate(360deg); }
 }
 
-/* ─── Weather card ───────────────────────────────────── */
 .weather-card {
     display: none;
     flex-direction: column;
@@ -261,7 +253,6 @@ html, body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Top row: city + icon */
 .weather-top {
     display: flex;
     align-items: flex-start;
@@ -308,7 +299,6 @@ html, body {
     transform: scale(1.05) rotate(-3deg);
 }
 
-/* Temperature */
 .temp-section {
     margin-top: 12px;
     display: flex;
@@ -333,7 +323,6 @@ html, body {
     font-weight: 400;
 }
 
-/* Stats row */
 .stats-row {
     display: flex;
     align-items: center;
@@ -396,7 +385,6 @@ html, body {
     flex-shrink: 0;
 }
 
-/* ─── Hint text ─────────────────────────────────────── */
 .hint {
     margin-top: 20px;
     font-size: 0.82rem;
@@ -405,7 +393,6 @@ html, body {
     letter-spacing: 0.3px;
 }
 
-/* ─── Responsive ─────────────────────────────────────── */
 @media (max-width: 420px) {
     .card {
         padding: 22px 20px 26px;
