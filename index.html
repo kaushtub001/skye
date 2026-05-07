@@ -3,132 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <meta name="description" content="A beautiful, modern weather app that gives you real-time weather conditions for any city.">
+    <title>Skye — Weather App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="card">
-    <div class="search">
-        <input type="text" id="city-input" placeholder="Enter city name" spellcheck="false">
-        <button id="search-btn"><img src="images/search.png" alt="Search"></button>
-    </div>
-    <div class="error" id="error-msg">
-        <p>❌ Invalid city name. Please try again.</p>
-    </div>
-    <div class="loading" id="loading">
-        <p>Fetching weather...</p>
-    </div>
-    <div class="weather" id="weather-info">
-        <img src="images/rain.png" class="weather-icon" id="weather-icon" alt="Weather icon">
-        <h1 class="temp" id="temp">22°C</h1>
-        <h2 class="city" id="city">New York</h2>
-        <div class="details">
-            <div class="col">
-                <img src="images/humidity.png" alt="Humidity">
-                <div>
-                    <p class="humidity" id="humidity">50%</p>
-                    <p>Humidity</p>
+    <!-- Animated background blobs -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <div class="app-wrapper">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <span class="logo-icon">🌤</span>
+                <span class="logo-text">Skye</span>
+            </div>
+        </header>
+
+        <!-- Search card -->
+        <div class="card">
+
+            <div class="search-section">
+                <div class="search-bar">
+                    <svg class="search-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="text" id="city-input" placeholder="Search for a city…" spellcheck="false" autocomplete="off">
+                    <button id="search-btn" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
-            <div class="col">
-                <img src="images/wind.png" alt="Wind">
-                <div>
-                    <p class="wind" id="wind">15 km/h</p>
-                    <p>Wind Speed</p>
-                </div>
+
+            <!-- Error state -->
+            <div class="state-box error-box" id="error-msg">
+                <span class="state-icon">⚠️</span>
+                <p id="error-text">City not found. Please check the name and try again.</p>
             </div>
+
+            <!-- Loading state -->
+            <div class="state-box loading-box" id="loading">
+                <div class="spinner"></div>
+                <p>Fetching weather data…</p>
+            </div>
+
+            <!-- Weather result -->
+            <div class="weather-card" id="weather-info">
+
+                <!-- Top: city + condition badge -->
+                <div class="weather-top">
+                    <div class="city-info">
+                        <h1 class="city-name" id="city">—</h1>
+                        <span class="condition-badge" id="condition-badge">Clear</span>
+                    </div>
+                    <img src="images/clear.png" class="weather-icon" id="weather-icon" alt="Weather condition">
+                </div>
+
+                <!-- Temperature -->
+                <div class="temp-section">
+                    <span class="temp" id="temp">—</span>
+                    <span class="feels-like" id="feels-like">Feels like —</span>
+                </div>
+
+                <!-- Stats row -->
+                <div class="stats-row">
+                    <div class="stat-pill">
+                        <img src="images/humidity.png" class="stat-img" alt="Humidity">
+                        <div class="stat-info">
+                            <span class="stat-value" id="humidity">—</span>
+                            <span class="stat-label">Humidity</span>
+                        </div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-pill">
+                        <img src="images/wind.png" class="stat-img" alt="Wind">
+                        <div class="stat-info">
+                            <span class="stat-value" id="wind">—</span>
+                            <span class="stat-label">Wind</span>
+                        </div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-pill">
+                        <svg class="stat-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"/>
+                            <circle cx="12" cy="9" r="2.5"/>
+                        </svg>
+                        <div class="stat-info">
+                            <span class="stat-value" id="visibility">—</span>
+                            <span class="stat-label">Visibility</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
+        <p class="hint" id="hint">Type a city name above and press Enter ↵</p>
+
     </div>
-</div>
 
 <script>
     const apiKey = "98f93647173c42565da127e9a30dfc75";
     const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-    const searchBox = document.getElementById("city-input");
-    const searchBtn = document.getElementById("search-btn");
-    const weatherIcon = document.getElementById("weather-icon");
+    const searchBox  = document.getElementById("city-input");
+    const searchBtn  = document.getElementById("search-btn");
     const weatherDiv = document.getElementById("weather-info");
-    const errorDiv = document.getElementById("error-msg");
+    const errorDiv   = document.getElementById("error-msg");
+    const errorText  = document.getElementById("error-text");
     const loadingDiv = document.getElementById("loading");
+    const weatherIcon = document.getElementById("weather-icon");
+    const hint       = document.getElementById("hint");
 
-    function setWeatherIcon(condition) {
-        const iconMap = {
-            "Clouds":  "images/clouds.png",
-            "Clear":   "images/clear.png",
-            "Rain":    "images/rain.png",
-            "Drizzle": "images/drizzle.png",
-            "Mist":    "images/mist.png",
-            "Snow":    "images/snow.png",
-            "Haze":    "images/mist.png",
-            "Fog":     "images/mist.png",
-            "Smoke":   "images/mist.png",
-            "Dust":    "images/mist.png",
-            "Sand":    "images/mist.png",
-        };
-        weatherIcon.src = iconMap[condition] || "images/clear.png";
+    const iconMap = {
+        "Clouds":        "images/clouds.png",
+        "Clear":         "images/clear.png",
+        "Rain":          "images/rain.png",
+        "Drizzle":       "images/drizzle.png",
+        "Snow":          "images/snow.png",
+        "Mist":          "images/mist.png",
+        "Haze":          "images/mist.png",
+        "Fog":           "images/mist.png",
+        "Smoke":         "images/mist.png",
+        "Dust":          "images/mist.png",
+        "Sand":          "images/mist.png",
+        "Thunderstorm":  "images/rain.png",
+    };
+
+    // Background gradient per condition
+    const bgMap = {
+        "Clear":        ["#ff9a3c", "#ff6034"],
+        "Clouds":       ["#4b6cb7", "#182848"],
+        "Rain":         ["#1a2a6c", "#b21f1f"],
+        "Drizzle":      ["#2c5364", "#203a43"],
+        "Snow":         ["#a8c0ff", "#3f2b96"],
+        "Thunderstorm": ["#0f0c29", "#302b63"],
+        "Mist":         ["#606c88", "#3f4c6b"],
+        "Haze":         ["#606c88", "#3f4c6b"],
+    };
+
+    function applyBackground(condition) {
+        const colors = bgMap[condition] || ["#0f3443", "#34e89e"];
+        document.body.style.setProperty("--blob1-color", colors[0] + "99");
+        document.body.style.setProperty("--blob2-color", colors[1] + "99");
+    }
+
+    function showState(state) {
+        errorDiv.style.display   = "none";
+        loadingDiv.style.display = "none";
+        weatherDiv.style.display = "none";
+        hint.style.display       = "none";
+
+        if (state === "error")   { errorDiv.style.display   = "flex"; }
+        if (state === "loading") { loadingDiv.style.display = "flex"; }
+        if (state === "weather") {
+            weatherDiv.style.display = "flex";
+            weatherDiv.classList.remove("fade-in");
+            void weatherDiv.offsetWidth; // reflow
+            weatherDiv.classList.add("fade-in");
+        }
+        if (state === "hint") { hint.style.display = "block"; }
     }
 
     async function checkWeather(city) {
         if (!city.trim()) return;
-
-        // Show loading, hide others
-        errorDiv.style.display = "none";
-        weatherDiv.style.display = "none";
-        loadingDiv.style.display = "block";
+        showState("loading");
 
         try {
             const response = await fetch(apiUrl + encodeURIComponent(city) + `&appid=${apiKey}`);
 
             if (response.status === 404) {
-                loadingDiv.style.display = "none";
-                errorDiv.style.display = "block";
-                weatherDiv.style.display = "none";
+                errorText.textContent = `"${city}" not found. Check the spelling and try again.`;
+                showState("error");
                 return;
             }
-
-            if (!response.ok) {
-                throw new Error(`API error: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Status ${response.status}`);
 
             const data = await response.json();
+            const condition = data.weather[0].main;
 
-            document.getElementById("city").innerHTML = data.name + ", " + data.sys.country;
-            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
-            document.getElementById("humidity").innerHTML = data.main.humidity + "%";
-            document.getElementById("wind").innerHTML = data.wind.speed + " km/h";
+            document.getElementById("city").textContent       = `${data.name}, ${data.sys.country}`;
+            document.getElementById("condition-badge").textContent = data.weather[0].description
+                .split(" ").map(w => w[0].toUpperCase() + w.slice(1)).join(" ");
+            document.getElementById("temp").textContent       = `${Math.round(data.main.temp)}°C`;
+            document.getElementById("feels-like").textContent = `Feels like ${Math.round(data.main.feels_like)}°C`;
+            document.getElementById("humidity").textContent   = `${data.main.humidity}%`;
+            document.getElementById("wind").textContent       = `${data.wind.speed} m/s`;
 
-            setWeatherIcon(data.weather[0].main);
+            const visKm = data.visibility ? (data.visibility / 1000).toFixed(1) + " km" : "N/A";
+            document.getElementById("visibility").textContent = visKm;
 
-            loadingDiv.style.display = "none";
-            errorDiv.style.display = "none";
-            weatherDiv.style.display = "block";
+            weatherIcon.src = iconMap[condition] || "images/clear.png";
+            weatherIcon.alt = condition;
+
+            applyBackground(condition);
+            showState("weather");
 
         } catch (err) {
-            loadingDiv.style.display = "none";
-            errorDiv.querySelector("p").textContent = "❌ Something went wrong. Please try again.";
-            errorDiv.style.display = "block";
-            weatherDiv.style.display = "none";
+            errorText.textContent = "Something went wrong. Please try again.";
+            showState("error");
             console.error(err);
         }
     }
 
-    // Click to search
-    searchBtn.addEventListener("click", () => {
-        checkWeather(searchBox.value);
-    });
-
-    // Press Enter to search
+    searchBtn.addEventListener("click", () => checkWeather(searchBox.value));
     searchBox.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-            checkWeather(searchBox.value);
-        }
+        if (e.key === "Enter") checkWeather(searchBox.value);
     });
-</script>
 
+    // Show hint on load
+    showState("hint");
+</script>
 </body>
 </html>
