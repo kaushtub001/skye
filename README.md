@@ -28,7 +28,6 @@ Built with a sleek glassmorphism UI, smooth animations, and live weather data.
 
 - HTML5  
 - CSS3  
-- JavaScript (Vanilla)  
 - [OpenWeatherMap API](https://openweathermap.org/api)  
 
 ---
@@ -109,9 +108,3 @@ const apiKey = "YOUR_API_KEY_HERE";
 | Snow | ❄️ |
 | Mist / Haze / Fog | 🌫️ |
 | Thunderstorm | ⛈️ |
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
